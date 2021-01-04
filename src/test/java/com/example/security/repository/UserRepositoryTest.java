@@ -1,7 +1,7 @@
 package com.example.security.repository;
 
-import com.example.security.services.entity.User;
-import com.example.security.services.repository.UserRepository;
+import com.example.security.app.entity.User;
+import com.example.security.app.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -9,14 +9,12 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 @SpringBootTest
 @Transactional
 @Rollback(false)
 @Profile("local")
 public class UserRepositoryTest {
+
     @Autowired
     UserRepository userRepository;
 

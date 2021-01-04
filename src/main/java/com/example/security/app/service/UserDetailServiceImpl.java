@@ -1,7 +1,7 @@
-package com.example.security.services.service;
+package com.example.security.app.service;
 
-import com.example.security.services.dto.UserDetailsVO;
-import com.example.security.services.repository.UserRepository;
+import com.example.security.app.dto.UserDetailsVO;
+import com.example.security.app.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

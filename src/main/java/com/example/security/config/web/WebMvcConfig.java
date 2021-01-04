@@ -1,4 +1,4 @@
-package com.example.security.config;
+package com.example.security.config.web;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
@@ -16,8 +16,8 @@ public class WebMvcConfig implements WebMvcConfigurer{
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        // 강제로 이동 한다 했는데?
-        registry.addViewController("/index").setViewName("forward:/login");
+        // 강제로 이동
+        registry.addViewController("/").setViewName("forward:/index");
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
     }
 

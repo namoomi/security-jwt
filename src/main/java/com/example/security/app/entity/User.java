@@ -1,12 +1,13 @@
-package com.example.security.services.entity;
+package com.example.security.app.entity;
 
+import com.example.security.role.UserRole;
 import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 public class User {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,6 +18,10 @@ public class User {
     private String email;
     @Column(nullable = false)
     private String pw;
+
+    @Column(nullable = false, length = 50)
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
 
     public User(String username, String email, String pw){
         this.username = username;

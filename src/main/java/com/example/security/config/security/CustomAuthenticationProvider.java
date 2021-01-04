@@ -1,11 +1,10 @@
-package com.example.security.security.provider;
+package com.example.security.config.security;
 
-import com.example.security.services.dto.UserDetailsVO;
+import com.example.security.app.dto.UserDetailsVO;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import javax.annotation.Resource;

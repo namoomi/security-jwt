@@ -1,4 +1,4 @@
-package com.example.security.security.handler;
+package com.example.security.handler;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

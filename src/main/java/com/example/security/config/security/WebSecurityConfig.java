@@ -1,13 +1,11 @@
-package com.example.security.config;
+package com.example.security.config.security;
 
-import com.example.security.security.filter.CustomAuthenticationFilter;
-import com.example.security.security.handler.CustomLoginSuccessHandler;
-import com.example.security.security.provider.CustomAuthenticationProvider;
+import com.example.security.config.security.CustomAuthenticationFilter;
+import com.example.security.handler.CustomLoginSuccessHandler;
+import com.example.security.config.security.CustomAuthenticationProvider;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -33,10 +31,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin").hasRole("ADMIN")
                 .anyRequest().permitAll()
                 .and()
-                // 로그인 설
+                // 로그인 설정
                 .formLogin()
                 // 로그인 시작 페이지
-                .loginPage("/login")
+                .loginPage("/login/view")
                 // 성공시 리다이렉트
                 .successForwardUrl("/index")
                 // 실패시 리다이렉트

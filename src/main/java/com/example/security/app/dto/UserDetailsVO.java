@@ -1,6 +1,6 @@
-package com.example.security.services.dto;
+package com.example.security.app.dto;
 
-import com.example.security.services.entity.User;
+import com.example.security.app.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.experimental.Delegate;
