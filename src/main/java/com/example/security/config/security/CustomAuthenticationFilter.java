@@ -21,7 +21,8 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
                 authRequest = new UsernamePasswordAuthenticationToken(
                         request.getParameter("userEmail")
                         ,request.getParameter("userPw"));
-
+                //detail 무엇?
+                setDetails(request, authRequest);
         return this.getAuthenticationManager().authenticate(authRequest);
     }
 }
