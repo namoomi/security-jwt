@@ -23,9 +23,10 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
-    public User(String username, String email, String pw){
+    public User(String username, String email, String pw, UserRole role){
         this.username = username;
         this.email = email;
         this.pw = pw;
+        this.role = role;
     }
 }

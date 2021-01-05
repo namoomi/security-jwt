@@ -1,8 +1,6 @@
 package com.example.security.config.security;
 
-import com.example.security.config.security.CustomAuthenticationFilter;
 import com.example.security.handler.CustomLoginSuccessHandler;
-import com.example.security.config.security.CustomAuthenticationProvider;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -48,7 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public CustomAuthenticationFilter customAuthenticationFilter() throws Exception{
         CustomAuthenticationFilter customAuthenticationFilter = new CustomAuthenticationFilter(authenticationManager() );
-        customAuthenticationFilter.setFilterProcessesUrl("/user/login");
+        customAuthenticationFilter.setFilterProcessesUrl("/login");
         customAuthenticationFilter.setAuthenticationSuccessHandler(customLoginSuccessHandler());
         customAuthenticationFilter.afterPropertiesSet();
         return customAuthenticationFilter;
