@@ -17,10 +17,14 @@ public class UserDetailsVO implements UserDetails {
     private User user;
     private Collection<? extends GrantedAuthority> authorities;
 
-
     @Override
     public String getPassword() {
         return user.getPw();
+    }
+
+    @Override
+    public String getUsername() {
+        return user.getEmail();
     }
 
     @Override

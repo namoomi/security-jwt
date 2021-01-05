@@ -4,18 +4,22 @@ import com.example.security.role.UserRole;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Getter
 @NoArgsConstructor
-public class User {
+public class User implements Serializable {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
-    private String username;
+
+    @Setter
     @Column(nullable = false)
     private String email;
+
+    @Setter
     @Column(nullable = false)
     private String pw;
 
@@ -23,8 +27,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
-    public User(String username, String email, String pw, UserRole role){
-        this.username = username;
+    public User( String email, String pw, UserRole role){
         this.email = email;
         this.pw = pw;
         this.role = role;

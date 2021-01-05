@@ -1,5 +1,6 @@
 package com.example.security.config.security;
 
+import com.example.security.app.entity.User;
 import com.example.security.handler.CustomLoginSuccessHandler;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -9,6 +10,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -24,23 +26,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
-                // /about요청에 대해 로그인을 요구
-                .antMatchers("/about").authenticated()
-                // /admin요청에 대해선 ROLE_ADMIN 권한을 소유
-                .antMatchers("/admin").hasRole("ADMIN")
+                // 토큰을 활용하는 경우 모든 요청에 대해 접근이 가능하도록 함 - 왜?
                 .anyRequest().permitAll()
                 .and()
-                // 로그인 설정
-                .formLogin()
-                // 로그인 시작 페이지
-                .loginPage("/login/view")
-                // 성공시 리다이렉트
-                .successForwardUrl("/index")
-                // 실패시 리다이렉트
-                .failureForwardUrl("/index")
-                .permitAll()
+                // 토큰 사용시 세션이 필요없으므로 STATELESS으로 설정(사용안함)
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                // UsernamePasswordAuthenticationFilter 이전에 customFilter가 수행
+                // form기반의 로그인 비활성
+                .formLogin()
+                .disable()
+                //filter chain에 의해 customfilter가 정상적으로 수행되지 않음 ㅠ -> 핸들러가 잘 호출되지 않는다
                 .addFilterBefore(customAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
@@ -56,7 +51,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         customAuthenticationFilter.setAuthenticationSuccessHandler(customLoginSuccessHandler());
         customAuthenticationFilter.afterPropertiesSet();
         return customAuthenticationFilter;
-
     }
 
     @Bean
@@ -66,7 +60,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public CustomAuthenticationProvider customAuthenticationProvider() {
-        //생성자로 전달 ->
         return new CustomAuthenticationProvider(bCryptPasswordEncoder());
     }
 

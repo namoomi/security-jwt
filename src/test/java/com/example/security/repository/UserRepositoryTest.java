@@ -24,10 +24,10 @@ public class UserRepositoryTest {
 
     @Test
     public void findByEmail() {
-        User user = new User("connie2", "connie.2@projectvanilla.kr", "pwpw", UserRole.USER);
+        User user = new User( "connie.2@projectvanilla.kr", "pwpw", UserRole.USER);
         userRepository.save(user);
 
         User data = userRepository.findByEmail("connie.2@projectvanilla.kr").get();
-        System.out.println("username ::: "+data.getUsername());
+        System.out.println("username ::: "data.getEmail());
     }
 }

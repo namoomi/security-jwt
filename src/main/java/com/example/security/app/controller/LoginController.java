@@ -21,12 +21,12 @@ public class LoginController {
 
     @GetMapping("/init")
     public String init() {
-        String pw = passwordEncoder.encode("test");
+        //String pw = passwordEncoder.encode("test");
 
-        User user = new User("connie","connie.2@pv.kr",pw, UserRole.USER);
+        User user = new User("connie.2@pv.kr","test", UserRole.USER);
         userService.createUser(user);
 
-        User admin = new User("admin","admin@pv.kr", pw, UserRole.ADMIN);
+        User admin = new User("admin@pv.kr", "test", UserRole.ADMIN);
         userService.createUser(admin);
 
         return "redirect:/about";
