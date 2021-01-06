@@ -1,5 +1,9 @@
 package com.example.security.handler;
 
+import com.example.security.app.dto.UserDetailsVO;
+import com.example.security.app.entity.User;
+import com.example.security.constants.AuthConstants;
+import com.example.security.utils.TokenUtils;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
@@ -14,7 +18,10 @@ public class CustomLoginSuccessHandler extends SavedRequestAwareAuthenticationSu
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,  Authentication authentication) throws IOException, ServletException {
 
-        System.out.println();
+        User user =  ((UserDetailsVO)authentication.getPrincipal()).getUser();
+        //token generate with userInfo arg
+        String token  = TokenUtils.generateJWT(user);
+        response.addHeader(AuthConstants.AUTH_HEADER, AuthConstants.TOKEN_TYPE+" "+token);
 
     }
 }
