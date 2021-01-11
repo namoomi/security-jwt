@@ -22,6 +22,5 @@ public class CustomLoginSuccessHandler extends SavedRequestAwareAuthenticationSu
         //token generate with userInfo arg
         String token  = TokenUtils.generateJWT(user);
         response.addHeader(AuthConstants.AUTH_HEADER, AuthConstants.TOKEN_TYPE+" "+token);
-
     }
 }

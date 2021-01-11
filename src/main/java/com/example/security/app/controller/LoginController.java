@@ -22,11 +22,10 @@ public class LoginController {
     @GetMapping("/init")
     public String init() {
         //String pw = passwordEncoder.encode("test");
-
-        User user = new User("connie.2@pv.kr","test", UserRole.USER);
+        User user = new User("connie.2@pv.kr","test1234!", UserRole.USER);
         userService.createUser(user);
 
-        User admin = new User("admin@pv.kr", "test", UserRole.ADMIN);
+        User admin = new User("admin@pv.kr", "test1234!", UserRole.ADMIN);
         userService.createUser(admin);
 
         return "redirect:/about";
@@ -37,4 +36,12 @@ public class LoginController {
         return "login";
     }
 
+    @GetMapping("/login")
+    public String login() {
+
+        return "";
+    }
+
 }
+
+

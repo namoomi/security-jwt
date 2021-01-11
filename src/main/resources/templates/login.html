@@ -1,0 +1,32 @@
+<html>
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+        const login = () => {
+            $.ajax({
+                url: '/login'
+                ,method: 'POST'
+                ,header:{"Content-Type":"application/json",	//Content-Type 설정
+                        "X-HTTP-Method-Override":"POST"}
+                ,contentType: "application/json; charset=utf-8"
+                ,data: JSON.stringify({
+                    "email":"connie.2@pv.kr"
+                    ,"pw":"test1234!"
+                })
+            }).done(function(data,msg,xhr){
+                const auth = xhr.getResponseHeader('Authorization');
+                console.log(auth)
+                alert(auth)
+                /*$.ajax({
+                    url: '/signin'
+                    ,header:{"Authorization": auth}
+                    ,contentType: "application/json; charset=utf-8"
+                }).done(function(data,msg,xhr){
+                    console.log(data,msg,xhr)
+                })*/
+            })
+        }
+    </script>
+    <body>
+        <input type="button" value="로그인" onclick="login()">
+    </body>
+</html>
