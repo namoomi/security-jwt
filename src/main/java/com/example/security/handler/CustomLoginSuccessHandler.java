@@ -16,11 +16,10 @@ import java.io.IOException;
 
 public class CustomLoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,  Authentication authentication) throws IOException, ServletException {
-
-        User user =  ((UserDetailsVO)authentication.getPrincipal()).getUser();
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
+        User user = ((UserDetailsVO) authentication.getPrincipal()).getUser();
         //token generate with userInfo arg
-        String token  = TokenUtils.generateJWT(user);
-        response.addHeader(AuthConstants.AUTH_HEADER, AuthConstants.TOKEN_TYPE+" "+token);
+        String token = TokenUtils.generateJWT(user);
+        response.addHeader(AuthConstants.AUTH_HEADER, AuthConstants.TOKEN_TYPE + " " + token);
     }
 }

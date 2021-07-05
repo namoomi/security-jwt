@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
 import java.util.Collections;
 
 @RequiredArgsConstructor
@@ -19,9 +20,9 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-       return repository.findByEmail(email).map(
-               u -> new UserDetailsVO(u, Collections.singleton(
-                       new SimpleGrantedAuthority("USER")
-               ))).orElseThrow(() -> new UsernameNotFoundException(email));
+        return repository.findByEmail(email).map(
+                u -> new UserDetailsVO(u, Collections.singleton(
+                        new SimpleGrantedAuthority("USER")
+                ))).orElseThrow(() -> new UsernameNotFoundException(email));
     }
 }
